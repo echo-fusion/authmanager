@@ -131,7 +131,7 @@ Neither one ever calls `header()` or `exit()`; they return PSR-7 responses.
 * Passwords use `password_hash` (bcrypt cost 12 by default, or argon2id). bcrypt only reads the first 72 bytes, so longer passwords are **rejected** instead of silently truncated.
 * The session id is regenerated on login and logout (session fixation).
 * A user that has been deleted since the last request is dropped from the session.
-* The database provider validates table and column names and binds every value; lookups by credentials never compare the password in SQL (the old echo-php code did).
+* The database provider validates table and column names and binds every value; lookups by credentials never compare the password in SQL.
 * Token lookups use the hash of the token. A leaked database does not leak working tokens.
 
 ## Requirements of the container
