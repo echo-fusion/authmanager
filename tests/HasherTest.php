@@ -83,4 +83,17 @@ final class HasherTest extends TestCase
 
         new PasswordHasher('md5');
     }
+
+    public function testTheBcryptLimitIsCountedInBytesNotCharacters(): void
+    {
+        $hasher = new PasswordHasher('bcrypt', ['cost' => 4]);
+        $persian36 = str_repeat('س', 36); // 36 characters, exactly 72 bytes
+        $persian37 = str_repeat('س', 37); // 37 characters, 74 bytes: bcrypt would silently ignore the last bytes
+
+        $this->assertTrue($hasher->verify($persian36, $hasher->hash($persian36)));
+
+        $this->expectException(AuthException::class);
+        $this->expectExceptionMessage('72 bytes');
+        $hasher->hash($persian37);
+    }
 }

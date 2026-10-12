@@ -9,8 +9,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use const JSON_THROW_ON_ERROR;
 use function json_encode;
-use function mb_strtolower;
 use function str_contains;
+use function strtolower;
 
 /**
  * Builds the "not allowed" response: a redirect for browsers, a JSON error for APIs.
@@ -37,7 +37,7 @@ final class Responder
 
     private static function wantsJson(ServerRequestInterface $request): bool
     {
-        return str_contains(mb_strtolower($request->getHeaderLine('Accept')), 'json')
-            || mb_strtolower($request->getHeaderLine('X-Requested-With')) === 'xmlhttprequest';
+        return str_contains(strtolower($request->getHeaderLine('Accept')), 'json')
+            || strtolower($request->getHeaderLine('X-Requested-With')) === 'xmlhttprequest';
     }
 }

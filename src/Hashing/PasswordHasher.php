@@ -10,11 +10,11 @@ use EchoFusion\Contracts\AuthManager\PasswordHasherInterface;
 use const PASSWORD_ARGON2ID;
 use const PASSWORD_BCRYPT;
 use function defined;
-use function mb_strlen;
 use function password_hash;
 use function password_needs_rehash;
 use function password_verify;
 use function sprintf;
+use function strlen;
 
 /**
  * Password hashing on top of PHP's `password_*` functions, which salt for you.
@@ -60,7 +60,7 @@ final class PasswordHasher implements PasswordHasherInterface
         if ($plain === '') {
             throw new AuthException('A password cannot be empty.');
         }
-        if ($this->algorithm === PASSWORD_BCRYPT && mb_strlen($plain) > self::BCRYPT_MAX_BYTES) {
+        if ($this->algorithm === PASSWORD_BCRYPT && strlen($plain) > self::BCRYPT_MAX_BYTES) {
             throw new AuthException(sprintf('bcrypt only uses the first %d bytes of a password; use a shorter one.', self::BCRYPT_MAX_BYTES));
         }
 
