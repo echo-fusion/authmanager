@@ -1,5 +1,7 @@
 # AuthManager
 
+[![CI](https://github.com/echo-fusion/authmanager/actions/workflows/ci.yml/badge.svg)](https://github.com/echo-fusion/authmanager/actions/workflows/ci.yml) [![Packagist](https://img.shields.io/packagist/v/echo-fusion/authmanager.svg)](https://packagist.org/packages/echo-fusion/authmanager) [![PHP](https://img.shields.io/badge/php-8.1%20%7C%208.2%20%7C%208.3-777bb4.svg)](https://www.php.net) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 **AuthManager** handles authentication for the EchoFusion framework: who is the current user, log in, log out, and protecting routes. It supports **session** and **token** authentication from the start, chosen in configuration, and anything else you plug in.
 
 It depends only on [echo-fusion/contracts](https://github.com/echo-fusion/contracts) and PSR interfaces. It does **not** require `sessionmanager`, `databasemanager`, an ORM or an entity class: it talks to a `SessionInterface`, a `ConnectionInterface` and a PSR-17 response factory, and the application decides what sits behind them.
@@ -16,13 +18,13 @@ UserProviderInterface     (where do users come from?)
  └─ your own provider     LDAP, an ORM, a remote API ...
 ```
 
+> Part of [EchoFusion](https://github.com/echo-fusion), a modular PHP framework built from small packages.
+
 ## Installation
 
 ```bash
 composer require echo-fusion/authmanager
 ```
-
-The packages that provide the implementations are suggestions, not requirements. Typically you also install `echo-fusion/sessionmanager` and `echo-fusion/databasemanager`, but any implementation of the contracts works.
 
 ## Requirements
 
