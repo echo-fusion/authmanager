@@ -1,0 +1,71 @@
+{
+    "name": "echo-fusion/authmanager",
+    "description": "Authentication for EchoFusion: session and token guards, pluggable user providers and PSR-15 middleware. Depends only on echo-fusion/contracts and PSR interfaces.",
+    "keywords": [
+        "auth",
+        "authentication",
+        "session",
+        "token",
+        "psr-15",
+        "echofusion"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Amir Shadanfar",
+            "email": "a.shadanfar.it@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
+        "echo-fusion/contracts": "^1.8",
+        "psr/container": "^2.0",
+        "psr/http-message": "^2.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "5.x-dev",
+        "friendsofphp/php-cs-fixer": "dev-master",
+        "echo-fusion/codestandard": "^1.0",
+        "guzzlehttp/psr7": "^2.5",
+        "echo-fusion/sessionmanager": "^1.0",
+        "echo-fusion/databasemanager": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "EchoFusion\\AuthManager\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EchoFusion\\AuthManager\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.1.0"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@cs-check",
+            "@analyze",
+            "@phpunit"
+        ],
+        "phpunit": "vendor/bin/phpunit",
+        "test:coverage:text": "vendor/bin/phpunit --coverage-text",
+        "cs-fix": "php-cs-fixer fix --config=.php-cs-fixer.dist.php",
+        "cs-check": "php-cs-fixer fix --dry-run --diff",
+        "analyze": "psalm --show-info=false --no-cache --no-progress"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "suggest": {
+        "echo-fusion/sessionmanager": "A SessionInterface implementation for the session guard.",
+        "echo-fusion/databasemanager": "A ConnectionInterface implementation for the database user provider."
+    }
+}
